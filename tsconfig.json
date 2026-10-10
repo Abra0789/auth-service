@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "rootDir": ".",
+        "outDir": "./dist",
+
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "target": "ESNext",
+
+        "types": ["node", "jest"],
+
+        "sourceMap": true,
+        "declaration": true,
+        "declarationMap": true,
+
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+
+        "noUncheckedIndexedAccess": true,
+        "exactOptionalPropertyTypes": true,
+
+        "strict": true,
+
+        "verbatimModuleSyntax": true,
+        "isolatedModules": true,
+        "noUncheckedSideEffectImports": true,
+        "moduleDetection": "force",
+        "strictPropertyInitialization": false,
+
+        "skipLibCheck": true
+    },
+    "include": ["src/**/*.ts", "tests/**/*.ts"],
+    "exclude": ["node_modules", "dist"]
+}
