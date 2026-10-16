@@ -70,6 +70,7 @@ describe('POST /auth/register', () => {
             // Assert
             const userRepository = connection.getRepository(User);
             const users = await userRepository.find();
+
             expect(users).toHaveLength(1);
             expect(users[0]?.firstName).toBe(userData.firstName);
             expect(users[0]?.lastName).toBe(userData.lastName);
