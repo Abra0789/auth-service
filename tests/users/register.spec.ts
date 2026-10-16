@@ -25,9 +25,9 @@ describe('POST /auth/register', () => {
             //AAA
             // Arrange
             const userData = {
-                firstName: 'Rayan',
-                lastName: ' Hossian',
-                email: 'rayan.cit.bd@gmail.com',
+                firstName: 'Abrar',
+                lastName: ' Galib',
+                email: 'galibabrar06@gmail.com',
                 password: 'secret',
             };
             //Act
@@ -42,9 +42,9 @@ describe('POST /auth/register', () => {
             //AAA
             // Arrange
             const userData = {
-                firstName: 'Rayan',
-                lastName: ' Hossian',
-                email: 'rayan.cit.bd@gmail.com',
+                firstName: 'Abrar',
+                lastName: ' Galib',
+                email: 'galibabrar06@gmail.com',
                 password: 'secret',
             };
             //Act
@@ -60,9 +60,9 @@ describe('POST /auth/register', () => {
             //AAA
             // Arrange
             const userData = {
-                firstName: 'Rayan',
-                lastName: ' Hossian',
-                email: 'rayan.cit.bd@gmail.com',
+                firstName: 'Abrar',
+                lastName: ' Galib',
+                email: 'galibabrar06@gmail.com',
                 password: 'secret',
             };
             //Act
@@ -84,9 +84,9 @@ describe('POST /auth/register', () => {
             //AAA
             // Arrange
             const userData = {
-                firstName: 'Rayan',
-                lastName: ' Hossian',
-                email: 'rayan.cit.bd@gmail.com',
+                firstName: 'Abrar',
+                lastName: ' Galib',
+                email: 'galibabrar06@gmail.com',
                 password: 'secret',
             };
             //Act
