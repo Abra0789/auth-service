@@ -3,3 +3,4 @@ export enum Roles {
     ADMIN = 'admin',
     MANAGER = 'manager',
 }
+export const saltRound = 10;

@@ -4,6 +4,7 @@ import { app } from '../../src/app.js';
 import { Roles } from '../../src/constants/index.js';
 import { AppDataSource } from '../../src/data-source.js';
 import { User } from '../../src/entities/User.js';
+import bcrypt from 'bcryptjs';
 
 describe('POST /auth/register', () => {
     let connection: DataSource;
@@ -75,7 +76,9 @@ describe('POST /auth/register', () => {
             expect(users[0]?.firstName).toBe(userData.firstName);
             expect(users[0]?.lastName).toBe(userData.lastName);
             expect(users[0]?.email).toBe(userData.email);
-            expect(users[0]?.password).not.toBe(userData.password);
+            expect(
+                await bcrypt.compare(userData.password, users[0]!.password),
+            ).toBe(true);
         });
 
         it.todo('should return an id of the created user');
@@ -112,7 +115,29 @@ describe('POST /auth/register', () => {
             // Assert
             const userRepository = connection.getRepository(User);
             const users = await userRepository.find();
-            expect(users[0]?.password).not.toBe(userData.password);
+            expect(
+                await bcrypt.compare(userData.password, users[0]!.password),
+            ).toBe(true);
+        });
+
+        it('should return 400 status code if email is already exists', async () => {
+            const userData = {
+                firstName: 'Abrar',
+                lastName: ' Galib',
+                email: 'galibabrar06@gmail.com',
+                password: 'secret',
+            };
+
+            //Act
+            await request(app).post('/auth/register').send(userData);
+            const response = await request(app)
+                .post('/auth/register')
+                .send(userData);
+            // Assert
+            const userRepository = connection.getRepository(User);
+            const users = await userRepository.find();
+            expect(response.statusCode).toBe(400);
+            expect(users).toHaveLength(1);
         });
     });
     describe('Fields are missing', () => {});
