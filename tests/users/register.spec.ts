@@ -29,7 +29,7 @@ describe('POST /auth/register', () => {
                 firstName: 'Abrar',
                 lastName: ' Galib',
                 email: 'galibabrar06@gmail.com',
-                password: 'secret',
+                password: 'Pa$$w0rd',
             };
             //Act
             const response = await request(app)
@@ -46,7 +46,7 @@ describe('POST /auth/register', () => {
                 firstName: 'Abrar',
                 lastName: ' Galib',
                 email: 'galibabrar06@gmail.com',
-                password: 'secret',
+                password: 'Pa$$w0rd',
             };
             //Act
             const response = await request(app)
@@ -64,7 +64,7 @@ describe('POST /auth/register', () => {
                 firstName: 'Abrar',
                 lastName: ' Galib',
                 email: 'galibabrar06@gmail.com',
-                password: 'secret',
+                password: 'Pa$$w0rd',
             };
             //Act
             await request(app).post('/auth/register').send(userData);
@@ -90,7 +90,7 @@ describe('POST /auth/register', () => {
                 firstName: 'Abrar',
                 lastName: ' Galib',
                 email: 'galibabrar06@gmail.com',
-                password: 'secret',
+                password: 'Pa$$w0rd',
             };
             //Act
             await request(app).post('/auth/register').send(userData);
@@ -108,7 +108,7 @@ describe('POST /auth/register', () => {
                 firstName: 'Abrar',
                 lastName: ' Galib',
                 email: 'galibabrar06@gmail.com',
-                password: 'secret',
+                password: 'Pa$$w0rd',
             };
             //Act
             await request(app).post('/auth/register').send(userData);
@@ -125,7 +125,7 @@ describe('POST /auth/register', () => {
                 firstName: 'Abrar',
                 lastName: ' Galib',
                 email: 'galibabrar06@gmail.com',
-                password: 'secret',
+                password: 'Pa$$w0rd',
             };
 
             //Act
@@ -140,5 +140,20 @@ describe('POST /auth/register', () => {
             expect(users).toHaveLength(1);
         });
     });
-    describe('Fields are missing', () => {});
+    describe('Fields are missing', () => {
+        const userData = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+        };
+
+        it('should return 400 when a field is missing', async () => {
+            const response = await request(app)
+                .post('/auth/register')
+                .send(userData);
+
+            expect(response.statusCode).toBe(400);
+        });
+    });
 });
