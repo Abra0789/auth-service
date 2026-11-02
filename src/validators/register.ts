@@ -1,24 +1,40 @@
 import * as z from 'zod';
 
 export const registerSchema = z.object({
-    firstName: z.string().trim(),
-    lastName: z.string().trim(),
-    email: z.email(),
+    firstName: z.string().trim().min(1, { message: 'First name is required.' }),
+
+    lastName: z.string().trim().min(1, { message: 'Last name is required.' }),
+
+    email: z.email({ message: 'Please provide a valid email address.' }),
+
     password: z
         .string()
-        .min(8, { message: 'Password must be at least 8 characters long' })
-        .max(32, { message: 'Password cannot exceed 32 characters' })
-
-        .refine((val) => /[A-Z]/.test(val), {
-            message: 'Must contain at least one uppercase letter',
+        .min(8, { message: 'Password must be at least 8 characters long.' })
+        .max(20, { message: 'Password cannot exceed 20 characters.' })
+        .regex(/[A-Z]/, {
+            message:
+                'Password must contain at least one uppercase letter (A-Z).',
         })
-        .refine((val) => /[a-z]/.test(val), {
-            message: 'Must contain at least one lowercase letter',
+        .regex(/[a-z]/, {
+            message:
+                'Password must contain at least one lowercase letter (a-z).',
         })
-        .refine((val) => /[0-9]/.test(val), {
-            message: 'Must contain at least one number',
+        .regex(/[0-9]/, {
+            message: 'Password must contain at least one number (0-9).',
         })
-        .refine((val) => /[^A-Za-z0-9]/.test(val), {
-            message: 'Must contain at least one special character',
+        .regex(/[!@#$%^&*?]/, {
+            message:
+                'Password must contain at least one special character (!@#$%^&*?).',
         }),
+});
+
+export const validationErrorResponseSchema = z.object({
+    success: z.boolean(),
+    message: z.string(),
+    errors: z.array(
+        z.object({
+            field: z.string(),
+            message: z.string(),
+        }),
+    ),
 });
